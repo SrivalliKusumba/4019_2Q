@@ -8,7 +8,8 @@
 
 #define SIZE 10
 
-char buff[SIZE] = "message";
+char buff[SIZE];
+char c[SIZE];
 
 int *count;
 int main(int argc, char const *argv[])
@@ -20,15 +21,10 @@ int main(int argc, char const *argv[])
     
     ftruncate(shmd,SIZE * sizeof(char) );
 
-    count = mmap(NULL,SIZE*sizeof(char),PROT_READ | PROT_WRITE, MAP_SHARED, shmd, 0);
+    *buff = mmap(NULL,SIZE*sizeof(char),PROT_READ | PROT_WRITE, MAP_SHARED, shmd, 0);
 
-
-    while(1)
-    {
-        printf("%s",buff);
-        *count = *buff;
-
-    }
+    scanf("%s",c);
+    memcpy(buff,c,SIZE);  
     
     
 

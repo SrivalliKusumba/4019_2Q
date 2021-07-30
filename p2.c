@@ -19,9 +19,9 @@ int main(int argc, char const *argv[])
 
     shmd = shm_open("/usr/share/dictionary", O_RDWR | O_CREAT, S_IRUSR | S_IWUSR);
     
-    ftruncate(fd,SIZE * sizeof(char) );
+    ftruncate(shmd,SIZE * sizeof(char) );
 
-    count = mmap(NULL,SIZE*sizeof(char),PROT_READ | PROT_WRITE, MAP_SHARED, shmd, 0);
+    *buff = mmap(NULL,SIZE*sizeof(char),PROT_READ | PROT_WRITE, MAP_SHARED, shmd, 0);
 
     
     while(1)
